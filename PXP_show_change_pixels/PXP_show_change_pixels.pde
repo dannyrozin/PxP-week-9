@@ -1,7 +1,7 @@
-// The world pixel by pixel 2016
+// The world pixel by pixel 2018
 // Daniel Rozin
 // uses PXP methods in the bottom
-// tracks change, click the mouse to create a reference frame, move the mouse to change the threshold
+// shows change, click the mouse to create a reference frame, move the mouse to change the threshold
 
 import processing.video.*;
 PImage frameToCompare;
@@ -17,6 +17,7 @@ void setup() {
   strokeWeight(2);
   rectMode(CORNERS);
   fill(255, 255, 0);
+  frameRate(30);
 }
 
 void draw() {
@@ -44,13 +45,12 @@ void draw() {
   updatePixels();  
 
   rect (0, 5, countChangePixels/height, 20);                                               // draw the yellow bar that shows amount of change
-//  frameToCompare.copy(video, 0, 0, width, height, 0, 0, width, height);                  // add this to track movement instead of change
+  //frameToCompare.copy(video, 0, 0, width, height, 0, 0, width, height);                  // add this to track movement instead of change
 
 }
 
 
-void mousePressed() {                                                                     // click mouse to copy the video into the reference frame
-   
+void mousePressed() {                                                                     // click mouse to copy the video into the reference frame   
   frameToCompare.copy(video, 0, 0, width, height, 0, 0, width, height);                                                                    
 }
 

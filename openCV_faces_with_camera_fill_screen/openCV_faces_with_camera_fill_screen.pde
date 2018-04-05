@@ -1,5 +1,5 @@
 
-// The world pixel by pixel 2017
+// The world pixel by pixel 2018
 // Daniel Rozin
 // tracks faces with opencv and enlarges the face to fill the whole window
 // uses PXP methods in the bottom
@@ -22,7 +22,7 @@ void setup() {
 
 void draw() {
   opencv.loadImage(video);                     // takes the live video as the source for openCV
-  image(video, 0, 0 );                         // show the live video
+  image(video, 0, 0 );                         // show the live video , in case no faces found
   Rectangle[] faces = opencv.detect();         // track the faces and put the results in array
   if ( faces.length>0) {                       // we will do this for first face 
      copy(video, 

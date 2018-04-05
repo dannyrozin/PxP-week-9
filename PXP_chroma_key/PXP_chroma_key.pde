@@ -1,4 +1,4 @@
-// The world pixel by pixel 2016
+// The world pixel by pixel 2018
 // Daniel Rozin
 // uses PXP methods in the bottom
 // does a chroma key effect, click the mouse to select a key color, move the mouse to change the threshold
@@ -23,13 +23,13 @@ void draw() {
   image(secondImage, 0, 0);                                               // draw the whole eiffel tower on the creen
   loadPixels();                                                           // load the screen pixels                                                 
   video.loadPixels();                                                   // load the video pixels     
-  threshold = mouseX;                                                     // movingthe mouse changes the threshold
+  threshold = mouseX;                                                     // moving the mouse changes the threshold
   for (int y = 0; y < video.height; y++) {
     for (int x = 0; x < video.width; x++) {                                                                                               
       PxPGetPixel(x, y, video.pixels, width);               // get the RGB of the live video
-      float distance = dist(R, G, B, keyR, keyG, keyB);   // compare our pixel to the target,R,G,B
-      if (distance > threshold) {                                   // If that distance is greater than the threshold then place 
-        PxPSetPixel(x, y, R, G, B, 255, pixels, width);                 // that pixel on the screen
+      float distance = dist(R, G, B, keyR, keyG, keyB);     // compare our pixel to the target,R,G,B
+      if (distance > threshold) {                           // If that distance is greater than the threshold then place 
+        PxPSetPixel(x, y, R, G, B, 255, pixels, width);     // that pixel on the screen
       }
     }
   } 

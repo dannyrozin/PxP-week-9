@@ -1,7 +1,7 @@
-// The world pixel by pixel 2016
+// The world pixel by pixel 2018
 // Daniel Rozin
 // uses PXP methods in the bottom
-// does a chroma key effect but on an image so the live video appears behind , click the mouse to select a key color, move the mouse to change the threshold
+// does a chroma key effect but on an image so the live video appears behind, click the mouse to select a key color, move the mouse to change the threshold
 
 import processing.video.*;
 PImage secondImage;
@@ -20,18 +20,18 @@ void setup() {
 
 void draw() {
   if (video.available()) video.read();
-  image(video, 0, 0);                                                 // draw the whole live video frameon the screen
+  image(video, 0, 0);                                                 // draw the whole live video frame on the screen
   loadPixels();                                                           // load the screen pixels                                                 
   video.loadPixels();                                                   // load the video pixels     
-  secondImage.loadPixels();                                                   // load the video pixels     
-  threshold = mouseX;                                                     // movingthe mouse changes the threshold
+  secondImage.loadPixels();                                                   // load the image pixels     
+  threshold = mouseX;                                                     // moving the mouse changes the threshold
   for (int y = 0; y < video.height; y++) {
     for (int x = 0; x < video.width; x++) {                                                                                               
-      PxPGetPixel(x, y, secondImage.pixels, width);               // get the RGB of the live video
+      PxPGetPixel(x, y, secondImage.pixels, width);               // get the RGB of the image (Bart)
       float distance = dist(R, G, B, keyR, keyG, keyB);           // compare our pixel to the target,R,G,B
       if (distance > threshold) {   
                                                                          // If that distance is greater than the threshold then place 
-        PxPSetPixel(x, y, R, G, B, 255, pixels, width);                 // that pixel on the screen
+        PxPSetPixel(x, y, R, G, B, 255, pixels, width);                 // that pixel (bart) on the screen (on top of live video)
       }
     }
   } 
@@ -40,7 +40,7 @@ void draw() {
 }
 
 void mousePressed() {
-  PxPGetPixel(mouseX, mouseY, secondImage.pixels, width);               // get the RGB of the live video
+  PxPGetPixel(mouseX, mouseY, secondImage.pixels, width);               // get the RGB of the image (bart) under the mouse
   keyR= R;                                                        // set the key color to the color under the mouse
   keyG= G;
   keyB= B;

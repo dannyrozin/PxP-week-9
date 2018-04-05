@@ -1,4 +1,4 @@
-// The world pixel by pixel 2016
+// The world pixel by pixel 2018
 // Daniel Rozin
 // uses PXP methods in the bottom
 // tracks change, click the mouse to create a reference frame, move the mouse to change the threshold
@@ -14,15 +14,17 @@ void setup() {
   frameToCompare = new PImage(width,height);                          // here we will store 1 frame of video to compare with the live frame
   noFill();   
   strokeWeight(2);
+  frameRate(30);
 }
 
 void draw() {
   if (video.available())     video.read();
-    image(video, 0, 0, width, height);                                                         // Draw the  video onto the screen
-    int leftMost = width;                                                                   // we want to drawa rect around all area of change so                                                      
-    int topMost = height ;                                                                  // we need to look for the most left, top, right and bottom
-    int rightMost = 0;
-    int bottomMost = 0;
+    image(video, 0, 0, width, height);                      // Draw the  video onto the screen
+    video.filter(BLUR,1);                                   // adding a blur makes itb less jumpy
+    int leftMost = width+10;                                   // we want to draw a rect around all area of change so                                                      
+    int topMost = height +10;                                  // we need to look for the most left, top, right and bottom
+    int rightMost = -10;                                        // we start with values that are outside of frame, in case we dont finf anything
+    int bottomMost = -10;
     video.loadPixels();
     frameToCompare.loadPixels();
      threshold = mouseX;     
@@ -32,24 +34,23 @@ void draw() {
       int videoR=R;
       int videoG= G;
       int videoB= B;
-      PxPGetPixel(x, y, frameToCompare.pixels, width);      // get the RGB of the stored frame
-      float distance = dist(R, G, B, videoR, videoG, videoB);   // compare our live pixel to the stored frame pixel's RGB
-        if (distance > threshold) {                                                              // If that distance is smaller than the threshold, then check
-          if (x< leftMost)leftMost = x;                                                           // if the pixel is within the rectangle of the leftMost,topMost etc. 
-          if (x> rightMost)rightMost = x;                                                           // and if it isn't then increase the rectangle to contain
+      PxPGetPixel(x, y, frameToCompare.pixels, width);           // get the RGB of the stored frame
+      float distance = dist(R, G, B, videoR, videoG, videoB);    // compare our live pixel to the stored frame pixel's RGB
+        if (distance > threshold) {                              // If that distance is smaller than the threshold, then check
+          if (x< leftMost)leftMost = x;                          // if the pixel is within the rectangle of the leftMost,topMost etc. 
+          if (x> rightMost)rightMost = x;                        // and if it isn't then increase the rectangle to contain
           if (y< topMost)topMost = y;
           if (y> bottomMost)bottomMost = y;
         }
       }
     }   
     rectMode(CORNERS);
-    rect(leftMost, topMost, rightMost,bottomMost);                                              // draw the rectangle that contains all the pixels that are different from reference
-    frameToCompare.set(0,0,video);                                                  // add this to track movement instead of change
+    rect(leftMost, topMost, rightMost,bottomMost);               // draw the rectangle that contains all the pixels that are different from reference
+   frameToCompare.set(0,0,video);                             // add this to track movement instead of change
   }
 
 
-void mousePressed() {                                                                     // click mouse to copy the video into the reference frame
-  
+void mousePressed() {                                            // click mouse to copy the video into the reference frame  
   frameToCompare.set(0,0,video);                                                                   
 }
 

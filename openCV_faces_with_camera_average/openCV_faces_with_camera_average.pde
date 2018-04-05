@@ -1,7 +1,7 @@
 
-// The world pixel by pixel 2017
+// The world pixel by pixel 2018
 // Daniel Rozin
-// tracks faces with opencv and applies edge effect to the face area
+// tracks faces with opencv and averages all faces it sees in a ghost effect
 // uses PXP methods in the bottom
 // download openCV for procesing: sketch->inport library->Add library...
 
@@ -24,13 +24,13 @@ void setup() {
 void draw() {
 
   opencv.loadImage(video);                     // takes the live video as the source for openCV
-  image(video, 0, 0 );                         // show the live video
+  image(video, 0, 0 );                         // show the live video , in case no faces will be found
 
   Rectangle[] faces = opencv.detect();         // track the faces and put the results in array
 
   loadPixels() ;                           
   video.loadPixels();
-  for (int i = 0; i < faces.length; i++) {       // well do it to all faces found
+  for (int i = 0; i < faces.length; i++) {       // well do it to all faces found , if no faces found then will be skipped and rthe fideo will show
     float XRatio= (faces[i].width/float(width));    // calculate the ratio between the full window and this face rect
     float YRatio= (faces[i].height/float(height));
     for (int x = 0; x < width; x++) {

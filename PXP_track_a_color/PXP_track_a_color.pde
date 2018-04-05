@@ -1,11 +1,11 @@
-// The world pixel by pixel 2016
+// The world pixel by pixel 2018
 // Daniel Rozin
-// Adjusting colors of a video
+// Tracks a color in live video, click mouse to choose color
 // uses PXP methods in the bottom
 import processing.video.*;
 
-Capture ourVideo;          // variable to hold the video
-int targetR=255,targetG=255,targetB=0;
+Capture ourVideo;                                  // variable to hold the video
+int targetR=255,targetG=255,targetB=0;            // these will hold the RGB we are looking for
 void setup() {
   size(1280, 720);
   frameRate(120);
@@ -18,7 +18,7 @@ void draw() {
   if (ourVideo.available())  ourVideo.read();       // get a fresh frame of video as often as we can
   ourVideo.loadPixels();                            // load the pixels array of the video 
   int recordHolderX=0, recordHolderY=0;             //these wil hold the location of the record holder
-  float record= 1000;                                    //this will hold the best value weve seen so far
+  float record= 1000;                                    //this will hold the best value weve seen so far, start with very large number
 
   for (int x = 0; x<width; x++) {
     for (int y = 0; y<height; y++) {
@@ -32,7 +32,7 @@ void draw() {
     }
   }
   fill(targetR,targetG,targetB);
-  ellipse( recordHolderX, recordHolderY, 10, 10);        // when we are done with all pixels the the best pixel is recordHolder
+  ellipse(recordHolderX, recordHolderY, 10, 10);        // when we are done with all pixels the the best pixel is recordHolder
 }
 
 void mousePressed(){

@@ -1,6 +1,6 @@
-// The world pixel by pixel 2016
+// The world pixel by pixel 2018
 // Daniel Rozin
-// track multiple colors in video
+// track multiple colors in video, click mouse on colors you want to track
 // uses PXP methods in the bottom
 import processing.video.*;
 
@@ -18,49 +18,50 @@ void draw() {
   image(ourVideo, 0, 0);
   if (ourVideo.available())  ourVideo.read();       // get a fresh frame of video as often as we can
   ourVideo.loadPixels();                            // load the pixels array of the video 
-  for (int i = 0; i< targets.length; i++) {
-    targets[i].record= 1000;
-  }
-  int recordHolderX=0, recordHolderY=0;             //these wil hold the location of the record holder
-  float record= 1000;                                    //this will hold the best value weve seen so far
 
-  for (int x = 0; x<width; x++) {
-    for (int y = 0; y<height; y++) {
-      PxPGetPixel(x, y, ourVideo.pixels, width);    // Get the RGB of each pixel
-      for (int i = 0; i< targets.length; i++) {
-
-        float thisPixelSimilarity= dist(targets[i].red, targets[i].green, targets[i].blue, R, G, B);     // dist calculates how similar the colors are
-        if (thisPixelSimilarity <targets[i].record) {                 // if our pixel is better than the record
-          targets[i].record= thisPixelSimilarity;                     //we remember the new record
-          targets[i].recordHolderX= x;                                // and the new record holdeo
-          targets[i].recordHolderY= y;
-        }
+  for (int i = 0; i< targets.length; i++) {      // visit all our target objects
+    targets[i].record= 1000;                      // reset our record variable for that target
+    for (int x = 0; x<width; x++) {
+      for (int y = 0; y<height; y++) {
+        PxPGetPixel(x, y, ourVideo.pixels, width);          // Get the RGB of each pixel
+        targets[i].calculateSimilarity(R, G, B, x, y) ;     //call our finction that compares the colors to each target
       }
     }
-  }
-  for (int i = 0; i< targets.length; i++) {
-    fill(targets[i].red, targets[i].green, targets[i].blue);
-    ellipse( targets[i].recordHolderX, targets[i].recordHolderY, 10, 10);        // when we are done with all pixels the the best pixel is recordHolder
+    targets[i].display();                                  // when were done with all pixels, draw the circle
   }
 }
 
 void mousePressed() {
   PxPGetPixel(mouseX, mouseY, ourVideo.pixels, width);    // Get the RGB of pixel under the mouse
-  targets= (targetColor[]) append(targets, new targetColor(R, G, B));                                              // set the RGB under the mouse to the target
+  targets= (targetColor[]) append(targets, new targetColor(R, G, B));          // set the RGB under the mouse to the target
 }
 
-class targetColor {                                       // 
-
+class targetColor {                                 
   int red, green, blue;
   float record=1000;
   int recordHolderX=0;
   int recordHolderY= 0;
-  targetColor(int r, int g, int b) {
+
+  targetColor(int r, int g, int b) {      // constructor recieves the RGB colors and sets them as the target
     red= r;
     green= g;
     blue= b;
   }
+
+  void calculateSimilarity(int r, int g, int b, int x, int y) {
+    float thisPixelSimilarity= dist(red, green, blue, r, g, b);     // dist calculates how similar the colors are
+    if (thisPixelSimilarity <record) {                 // if our pixel is better than the record
+      record= thisPixelSimilarity;                     //we remember the new record
+      recordHolderX= x;                                // and the new record holdeo
+      recordHolderY= y;
+    }
+  }
+  void display() {
+    fill(red, green, blue);
+    ellipse( recordHolderX, recordHolderY, 10, 10);        // when we are done with all pixels the  best pixel is recordHolder so we draw it
+  }
 }
+
 // our function for getting color components , it requires that you have global variables
 // R,G,B   (not elegant but the simples way to go, see the example PxP methods in object for 
 // a more elegant solution

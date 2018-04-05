@@ -1,6 +1,6 @@
-// The world pixel by pixel 2016
+// The world pixel by pixel 2018
 // Daniel Rozin
-// Adjusting colors of a video
+// tracking the brigtest pixel in live video
 // uses PXP methods in the bottom
 import processing.video.*;
 
@@ -25,7 +25,7 @@ void draw() {
       int thisBrightness=R+G+B;                     //adding up RGB is a good approximation of brightness
       if (thisBrightness >record) {                 // if our pixel is better than the record
         record= thisBrightness;                     //we remember the new record
-        recordHolderX= x;                           // and the new record holdeo
+        recordHolderX= x;                           // and the new record holder
         recordHolderY= y;
       }
     }

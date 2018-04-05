@@ -1,7 +1,7 @@
 // The world pixel by pixel 2016
 // Daniel Rozin
 // uses PXP methods in the bottom
-// removes the background and uses as mask, click the mouse to select the background, move the mouse to change the threshold
+// removes the background and uses as key, click the mouse to select the background, move the mouse to change the threshold
 
 import processing.video.*;
 PImage frameToCompare;
@@ -12,7 +12,7 @@ void setup() {
   size(640, 480);                                                  
   video = new Capture(this, width, height, 30);
   video.start();
-  frameToCompare = new PImage(width,height);
+  frameToCompare = new PImage(width,height);     // this will hold our background image
   secondImage = loadImage("eiffel.jpg");
   secondImage.resize(width, height);
   noFill();   
@@ -23,10 +23,10 @@ void draw() {
 
   if (video.available()) video.read();
     image(video,0,0);
-     video.filter(BLUR,1);
+     video.filter(BLUR,1);                                                 // makes the video less jumpy if blurred a bit
     loadPixels();                                                           // load the screen pixels                                                 
-    video.loadPixels();                                                    // load the reference frame pixels
-    frameToCompare.loadPixels();
+    video.loadPixels();                                                   
+    frameToCompare.loadPixels();                                             // load the reference frame pixels
       threshold = mouseX;  
     for (int y = 0; y < video.height; y++) {
       for (int x = 0; x < video.width; x++) {                                                                                               
@@ -45,14 +45,8 @@ void draw() {
     updatePixels();  
     if (mousePressed ==true){                                                                    // click mouse to copy the video into the reference frame
       frameToCompare.copy(video,0,0,width,height,0,0,width,height);
-      frameToCompare.filter(BLUR,1);
     }
   }
-
-
-void mousePressed() {                                                                     // click mouse to copy the video into the reference frame  
-  frameToCompare.copy(video, 0, 0, width, height, 0, 0, width, height);                                                                    
-}
 
 
 
