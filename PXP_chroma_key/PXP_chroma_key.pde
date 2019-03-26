@@ -1,4 +1,4 @@
-// The world pixel by pixel 2018
+// The world pixel by pixel 2019
 // Daniel Rozin
 // uses PXP methods in the bottom
 // does a chroma key effect, click the mouse to select a key color, move the mouse to change the threshold

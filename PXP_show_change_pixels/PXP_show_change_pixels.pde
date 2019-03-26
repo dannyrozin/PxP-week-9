@@ -1,4 +1,4 @@
-// The world pixel by pixel 2018
+// The world pixel by pixel 2019
 // Daniel Rozin
 // uses PXP methods in the bottom
 // shows change, click the mouse to create a reference frame, move the mouse to change the threshold
@@ -45,7 +45,7 @@ void draw() {
   updatePixels();  
 
   rect (0, 5, countChangePixels/height, 20);                                               // draw the yellow bar that shows amount of change
-  //frameToCompare.copy(video, 0, 0, width, height, 0, 0, width, height);                  // add this to track movement instead of change
+  frameToCompare.copy(video, 0, 0, width, height, 0, 0, width, height);                  // add this to track movement instead of change
 
 }
 
