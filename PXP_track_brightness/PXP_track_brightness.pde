@@ -30,7 +30,8 @@ void draw() {
       }
     }
   }
-  ellipse( recordHolderX, recordHolderY, 10, 10);        // when we are done with all pixels the the best pixel is recordHolder
+  strokeWeight(3);
+  ellipse( recordHolderX, recordHolderY, 20, 20);        // when we are done with all pixels the the best pixel is recordHolder
 }
 
 
