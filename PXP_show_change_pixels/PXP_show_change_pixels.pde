@@ -1,4 +1,4 @@
-// The world pixel by pixel 2019
+// The world pixel by pixel 2020
 // Daniel Rozin
 // uses PXP methods in the bottom
 // shows change, click the mouse to create a reference frame, move the mouse to change the threshold
@@ -10,7 +10,8 @@ int threshold = 200;
 void setup() {
   println(Capture.list());
   size(720, 480);                                                   
-  video = new Capture(this, width, height);
+  String videoList[] = Capture.list();
+  video = new Capture(this, width, height, videoList[0]);
   video.start();
   frameToCompare = new PImage(width, height);                 // here we will store 1 frame of video to compare with the live frame
   noFill();   

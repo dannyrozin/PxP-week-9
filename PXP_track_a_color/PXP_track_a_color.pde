@@ -1,4 +1,4 @@
-// The world pixel by pixel 2019
+// The world pixel by pixel 2020
 // Daniel Rozin
 // Tracks a color in live video, click mouse to choose color
 // uses PXP methods in the bottom
@@ -9,7 +9,8 @@ int targetR=255,targetG=255,targetB=0;            // these will hold the RGB we 
 void setup() {
   size(1280, 720);
   frameRate(120);
-  ourVideo = new Capture(this, width, height);       // open default video in the size of window
+  String videoList[] = Capture.list();
+  ourVideo = new Capture(this, width, height, videoList[0]);       // open default video in the size of window
   ourVideo.start();                                  // start the video
 }
 

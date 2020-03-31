@@ -1,4 +1,4 @@
-// The world pixel by pixel 2019
+// The world pixel by pixel 2020
 // Daniel Rozin
 // track multiple colors in video, click mouse on colors you want to track
 // uses PXP methods in the bottom
@@ -10,7 +10,8 @@ targetColor[] targets=new targetColor [0];           // array to hold objects of
 void setup() {
   size(1280, 720);
   frameRate(120);
-  ourVideo = new Capture(this, width, height);       // open default video in the size of window
+  String videoList[] = Capture.list();
+  ourVideo = new Capture(this, width, height, videoList[0]);       // open default video in the size of window
   ourVideo.start();                                  // start the video
 }
 

@@ -1,4 +1,4 @@
-// The world pixel by pixel 2019
+// The world pixel by pixel 2020
 // Daniel Rozin
 // uses PXP methods in the bottom
 // does a chroma key effect, click the mouse to select a key color, move the mouse to change the threshold
@@ -9,8 +9,9 @@ float keyR=0, keyG=255, keyB=0;
 Capture video;
 int threshold = 200;
 void setup() {
-  size(640, 480);                                                  
-  video = new Capture(this, width, height, 30);
+  size(640, 480);  
+  String videoList[] = Capture.list();
+  video = new Capture(this, width, height, videoList[0]);
   video.start();
 
   secondImage = loadImage("eiffel.jpg");
