@@ -13,7 +13,8 @@ OpenCV opencv;
 
 void setup() {
   size(640, 480);
-  video = new Capture(this, 320, 240);                     // make small to make it faster
+  String videoList[] = Capture.list();
+  video = new Capture(this, 320, 240, videoList[0]);                  // make small to make it faster
   opencv = new OpenCV(this, 320, 240);
   opencv.loadCascade(OpenCV.CASCADE_FRONTALFACE);  
   video.start();
