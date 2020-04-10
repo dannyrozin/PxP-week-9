@@ -5,7 +5,7 @@ import processing.video.*;
 Movie ourMovie;                          // variable to hold the video
 void setup() {
   size(480, 360);
-  ourMovie = new Movie(this, "scream.mp4"); 
+  ourMovie = new Movie(this, "bulletproof.mp4"); 
   ourMovie.loop();                          // start playing the video and loop
 }
 

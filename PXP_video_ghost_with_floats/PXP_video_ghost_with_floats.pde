@@ -10,14 +10,14 @@ Movie ourVideo;          // variable to hold the video
 
 void setup() {
   size(480, 360);
-  ourVideo = new Movie(this, "scream.mp4");       // open default video in the size of window
+  ourVideo = new Movie(this, "powers of ten.mp4");       // open default video in the size of window
   ourVideo.loop();                                  // start the video
 }
 
 void draw() {
   ourVideo.loadPixels();
   loadPixels();
-  transparancy= map(mouseX,0,width, 0.99,1);
+  transparancy= map(mouseX,0,width, 0.9,1);
   for (int x = 0; x< width; x++) {
     for (int y = 0; y< height; y++) {
       PxPGetPixel(x, y, ourVideo.pixels, width);                 // get the RGB of our pixel
