@@ -1,4 +1,4 @@
-// The world pixel by pixel 2020
+// The world pixel by pixel 2021
 // Daniel Rozin
 // track multiple colors in video, click mouse on colors you want to track
 // uses PXP methods in the bottom
