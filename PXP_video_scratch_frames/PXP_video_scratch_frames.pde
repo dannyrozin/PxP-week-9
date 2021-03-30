@@ -1,4 +1,4 @@
-// The world pixel by pixel 2020
+// The world pixel by pixel 2021
 // Daniel Rozin
 // scratch video, move mouse to change frame
 import processing.video.*;
@@ -14,6 +14,7 @@ void draw() {
   ourMovie.play();
   ourMovie.jump(positon);
   ourMovie.pause();
+
 }
 
 void movieEvent(Movie m) {              //  callback function that reads a frame whenever its ready

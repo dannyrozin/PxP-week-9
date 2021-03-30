@@ -1,4 +1,4 @@
-// The world pixel by pixel 2020
+// The world pixel by pixel 2021
 // Daniel Rozin
 // ghosting frames of a video, move mouse to change transparency
 import processing.video.*;
@@ -10,7 +10,7 @@ void setup() {
 }
 
 void draw() {
-  float transparency = map (mouseX, 0,width,0,10);
+  float transparency = map (mouseX, 0,width,0,20);
   tint (255,transparency);
   image(ourMovie,0,0);                         
 }

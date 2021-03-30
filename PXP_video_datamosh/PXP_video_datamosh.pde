@@ -1,4 +1,4 @@
-// The world pixel by pixel 2020
+// The world pixel by pixel 2021
 // Daniel Rozin
 // uses PXP methods in the bottom
 // does a datamosh effect , no interaction but you can change threshold in code
@@ -21,7 +21,7 @@ void draw() {
   for (int y = 0; y < ourMovie.height; y++) {
     for (int x = 0; x < ourMovie.width; x++) {                                                                                               
       PxPGetPixel(x, y, ourMovie.pixels, width);               // get the RGB of the live video
-      int videoR=R;
+      int videoR= R;
       int videoG= G;
       int videoB= B;
       PxPGetPixel(x, y, pixels, width);      // get the RGB of the stored frame

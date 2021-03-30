@@ -1,4 +1,4 @@
-// The world pixel by pixel 2020
+// The world pixel by pixel 2021
 // Daniel Rozin
 // glitches video by places random rects of video on screen,
 // and changing blend modes,  no interaction

@@ -1,4 +1,4 @@
-// The world pixel by pixel 2020
+// The world pixel by pixel 2021
 // Daniel Rozin
 // uses PXP methods in the bottom
 // removes the background and uses as key, click the mouse to select the background, move the mouse to change the threshold
