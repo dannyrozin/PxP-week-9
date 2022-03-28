@@ -1,4 +1,4 @@
-// The world pixel by pixel 2021
+// The world pixel by pixel 2022
 // Daniel Rozin
 // tracking the brigtest pixel in live video
 // uses PXP methods in the bottom

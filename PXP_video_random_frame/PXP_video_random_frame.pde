@@ -1,17 +1,18 @@
-// The world pixel by pixel 2021
+// The world pixel by pixel 2022
 // Daniel Rozin
-// scratch video, move mouse to change frame
+// random, no interaction
 import processing.video.*;
 Movie ourMovie;                          // variable to hold the video
 void setup() {
   size(480, 360);
-  ourMovie = new Movie(this, "scream.mp4"); 
+  ourMovie = new Movie(this, "scream.mp4");
 }
 
 void draw() {
   float positon = random ( 0, ourMovie.duration());
-  image(ourMovie, 0, 0);   
+  image(ourMovie, 0, 0);
   ourMovie.play();
+  ourMovie.volume(0);
   ourMovie.jump(positon);
   ourMovie.pause();
 }

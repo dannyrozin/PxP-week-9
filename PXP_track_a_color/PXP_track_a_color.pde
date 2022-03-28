@@ -1,4 +1,4 @@
-// The world pixel by pixel 2021
+// The world pixel by pixel 2022
 // Daniel Rozin
 // Tracks a color in live video, click mouse to choose color
 // uses PXP methods in the bottom

@@ -1,5 +1,5 @@
 
-// The world pixel by pixel 2021
+// The world pixel by pixel 2022
 
 // Daniel Rozin
 // tracks faces with opencv and averages all faces it sees in a ghost effect

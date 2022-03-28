@@ -1,5 +1,5 @@
 
-// The world pixel by pixel 2021
+// The world pixel by pixel 2022
 // Daniel Rozin
 // tracks faces with opencv and lets you paint by moving face
 // download openCV for procesing: sketch->inport library->Add library...

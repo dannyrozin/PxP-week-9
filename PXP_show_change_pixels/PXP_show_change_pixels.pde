@@ -1,4 +1,4 @@
-// The world pixel by pixel 2021
+// The world pixel by pixel 2022
 // Daniel Rozin
 // uses PXP methods in the bottom
 // shows change, click the mouse to create a reference frame, move the mouse to change the threshold
